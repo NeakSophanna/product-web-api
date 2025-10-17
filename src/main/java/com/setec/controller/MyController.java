@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.servlet.view.RedirectView;
+
 import com.setec.dao.PostProductDAO;
 import com.setec.dao.PutProductDAO;
 import com.setec.entities.Product;
@@ -32,6 +34,11 @@ public class MyController {
 	@Autowired
 	private ProductRepo productRepo;
 	
+	@GetMapping("/")
+    public RedirectView redirectToSwagger() {
+        return new RedirectView("/swagger-ui/index.html");
+    }
+
 	@GetMapping
 	public Object getAll() {
 		var product = productRepo.findAll();
